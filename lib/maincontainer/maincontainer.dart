@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../screens/cart/cartpage.dart';
 import '../screens/home/homepage.dart';
 import '../screens/orderPage/myorder.dart';
+import '../screens/profile/profile_screen.dart';
 
 class Maincontainer extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _MaincontainerState extends State<Maincontainer> {
     Homepage(),
     Cartpage(),
     Orederpage(),
-    Center(child: Text('Profile Screen', style: TextStyle(fontSize: 24))),
+    ProfileScreen()
   ];
 
   void _onItemTapped(int index) {

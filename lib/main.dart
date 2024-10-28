@@ -12,6 +12,7 @@ import 'Location/location_allow.dart';
 import 'screens/auth/login_page.dart';
 import 'screens/auth/otp_verification_page.dart';
 import 'screens/auth/registor.dart';
+import 'screens/cancelbooking/cancel_booking.dart';
 import 'screens/cart/addto_cartpage.dart';
 import 'screens/cart/cartpage.dart';
 import 'screens/cart/fruitslist/fruits_list.dart';
@@ -24,6 +25,8 @@ import 'screens/home/category_list.dart';
 import 'screens/home/homepage.dart';
 import 'maincontainer/maincontainer.dart';
 
+import 'screens/orderPage/orderpreview.dart';
+import 'screens/profile/profile_screen.dart';
 import 'screens/search/search_history.dart';
 import 'screens/search/search_page.dart';
 import 'screens/search/search_product.dart';
@@ -117,7 +120,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         title: AppConstants.appTitle,
         debugShowCheckedModeBanner: false,
         theme: isDarkModeEnabled ? AppTheme.darkTheme : AppTheme.lightTheme,
-        home: LoginPage(),
+        home: OrderPreview(),
       ),
     );
   }

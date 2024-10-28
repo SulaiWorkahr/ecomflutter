@@ -14,4 +14,10 @@ class AppAssets {
   static const String s_onion = 'images/s_onion.png';
   static const String s_pineapple = 'images/s_pineapple.png';
   static const String s_strawberry = 'images/s_strawberry.png';
+  static const String profileimg = 'images/ecomprofileimg.png';
+  static const String profileorderhistroy = 'images/profile_orderhistory.png';
+  static const String profileaddress = 'images/profile_address.png';
+  static const String profilepayment = 'images/profile_payment.png';
+  static const String profilesettings = 'images/profile_setting.png';
+  static const String genderal = 'images/genderal.png';
 }
