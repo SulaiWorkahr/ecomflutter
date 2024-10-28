@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../constants/constants.dart';
-import '../services/comFuncService.dart';
+import '../services/comfuncservice.dart';
 
 class CustomAutoCompleteWidget extends StatelessWidget {
   var valArr;

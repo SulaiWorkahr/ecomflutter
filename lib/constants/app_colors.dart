@@ -28,7 +28,7 @@ class AppColors {
     }
   }
 
-  static const Color primary = Color(0xFF10B0C3);
+  static const Color primary = Color(0xFF027335);
   static const Color primaryLight = Color(0xFF10B0C3);
   static const Color primaryDark = Color(0xFF365F76);
   static const Color primaryDark2 = Color(0xFF2e3e53);
@@ -82,36 +82,44 @@ class AppColors {
   static const Color lightGreen = Color(0xFFE1FFE3);
 
   static const Color darkGreen = Color(0xFF196B23);
-   static const Color darkBlue = Color(0xFF0E58D4);
+  static const Color darkBlue = Color(0xFF0E58D4);
 
-   static const Color lightBlue =  Color(0xFFCBDFF7);
-   static const Color lightYellow =  Color(0xFFF5F5DC);
+  static const Color lightBlue = Color(0xFFCBDFF7);
+  static const Color lightYellow = Color(0xFFF5F5DC);
 
- static const Color lightGreen1 =  Color(0xFF5DCE6A);
+  static const Color lightGreen1 = Color(0xFF5DCE6A);
 
- static const Color grey1 =  Color(0xFFF1F0F5);
-   static const Color darkGrey = Color(0xFF696A6A);
+  static const Color grey1 = Color(0xFFF1F0F5);
+  static const Color darkGrey = Color(0xFF696A6A);
 
-   static const Color gold = Color(0xFFFCB019);
-   static const Color black = Color(0xFF2A2A2A);
-   static const Color shadowBlack = Color(0xFF6E6E6E);
-   
-   
-
-
-
-
-   
-
-
-
-
+  static const Color gold = Color(0xFFFCB019);
+  static const Color black = Color(0xFF2A2A2A);
+  static const Color shadowBlack = Color(0xFF6E6E6E);
 
   Color loadingGrey = Colors.grey[300]!;
   Color loadingGrey2 = Colors.grey[100]!;
 
   static Color dark = Colors.black;
   static const Color pink = Colors.pink;
+
+//ecom
+
+  static const Color e_primary = Color(0xFF027335);
+  static const Color e_black = Color(0xFF000000);
+  static const Color e_white = Color(0xFFFFFFFF);
+
+  static const Color e_red = Color(0xFFFF5959);
+  //grey
+  static const Color e_grey1 = Color(0xFFB0B0B0);
+  static const Color e_grey2 = Color(0xFFD9D9D9);
+  static const Color e_grey3 = Color(0xFFE7E7E7);
+
+  static const Color e_grey = Color(0xFF888888);
+
+//light
+  static const Color e_lightyellow = Color(0xFF888888);
+
+//ecom//
 
   static ColorScheme myColorScheme = ColorScheme(
     primary: primary,

@@ -1,0 +1,13 @@
+{
+    "editor.stickyTabStops": false,
+    "editor.tabCompletion": "on",
+    "workbench.editor.scrollToSwitchTabs": true,
+    "workbench.editor.wrapTabs": true,
+    "workbench.editor.showTabs": "multiple",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.pinnedTabsOnSeparateRow": true,
+    "debug.closeReadonlyTabsOnEnd": false,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "editor.tabSize": 6
+}

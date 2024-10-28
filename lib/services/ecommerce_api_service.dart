@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
+import '../json_data/home_page_json/home_Category_json_data.dart';
+import '../json_data/home_page_json/home_carousel_json.dart';
+import '../json_data/home_page_json/home_json_data.dart';
 
 class EcommerceApiService {
   static String liveApiPath = AppConstants.apiBaseUrl;
@@ -1259,6 +1262,47 @@ class EcommerceApiService {
     } catch (e) {
       print('catcherror $e');
       return e;
+    }
+  }
+
+  //ecomHomepage_popularDeals
+
+  Future gethomePage() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getHomePageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve Popular Deals: $e');
+    }
+  }
+  //ecomHomepage_Category
+
+  Future gethomecategory() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getHomeCategoryJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve Category: $e');
+    }
+  }
+
+  //ecomHomepage_Carousel
+
+  Future gethomecarousel() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getHomeCarouselJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve Carousel: $e');
     }
   }
 }

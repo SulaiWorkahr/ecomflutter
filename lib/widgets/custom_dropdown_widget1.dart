@@ -2,7 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
-import '../services/comFuncService.dart';
+import '../services/comfuncservice.dart';
 
 class CustomDropdownWidget1 extends StatelessWidget {
   var valArr;
