@@ -107,6 +107,8 @@ class AppColors {
   static const Color e_primary = Color(0xFF027335);
   static const Color e_black = Color(0xFF000000);
   static const Color e_white = Color(0xFFFFFFFF);
+  static const Color e_blue = Color(0xFF33BDD6);
+  static const Color e_yellow = Color(0xFFC8A633);
 
   static const Color e_red = Color(0xFFFF5959);
   //grey
@@ -117,7 +119,8 @@ class AppColors {
   static const Color e_grey = Color(0xFF888888);
 
 //light
-  static const Color e_lightyellow = Color(0xFF888888);
+  static const Color e_lightyellow = Color(0xFFF9E7AB);
+  static const Color e_lightgreen = Color(0xFFF1FFF7);
 
 //ecom//
 

@@ -1,4 +1,11 @@
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:e_commerce/constants/app_assets.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/app_colors.dart';
+import '../../widgets/button1_widget.dart';
+import '../../widgets/heading_widget.dart';
+import '../../widgets/sub_heading_widget.dart';
 
 class OnboardingPagesecond extends StatefulWidget {
   const OnboardingPagesecond({super.key});
@@ -18,75 +25,73 @@ class _OnboardingPagesecondState extends State<OnboardingPagesecond> {
         padding: EdgeInsets.only(top: screenHeight * 0.1),
         child: Stack(
           children: [
-            Image.network(
-              'assets/images/bg.png',
+            Image.asset(
+              AppAssets.bg,
               width: screenWidth,
               height: screenHeight * 0.5,
             ),
             Padding(
               padding: EdgeInsets.only(left: screenWidth * 0.1, top: 0),
-              child: Image.network(
+              child: Image.asset(
                 width: screenWidth * 0.8,
                 height: screenHeight * 0.5,
-                'assets/images/basket.png',
+                AppAssets.basket,
               ),
             ),
             Spacer(),
             Padding(
                 padding: EdgeInsets.only(
-                  top: screenHeight * 0.55,
+                  top: screenHeight * 0.49,
                   // left: screenWidth * 0.3,
                   // right: screenHeight * 0.3
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      'Best Quality Grocery at your doorstep!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
+                    DotsIndicator(
+                      dotsCount: 4,
+                      decorator: DotsDecorator(
+                        color: AppColors.e_grey2,
+                        activeColor: AppColors.e_primary,
+                        size: const Size.square(8.0),
+                        activeSize: const Size(16.0, 8.0),
+                        activeShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
                       ),
                     ),
+                    HeadingWidget(
+                      title: 'Best Quality Grocery at your doorstep!',
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                      textAlign: TextAlign.center,
+                    ),
                     SizedBox(
-                      height: screenHeight * 0.015,
+                      height: screenHeight * 0.012,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
                           left: screenWidth * 0.1, right: screenWidth * 0.1),
-                      child: Text(
-                        'Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
+                      child: SubHeadingWidget(
+                        title:
+                            'Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
+                        fontSize: 14,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xFF8E9488)),
                       ),
                     ),
+                    Spacer(),
                     Padding(
                       padding: EdgeInsets.only(
                           top: screenHeight * 0.02,
                           left: screenWidth * 0.07,
                           right: screenWidth * 0.07,
                           bottom: screenHeight * 0.02),
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            minimumSize: WidgetStatePropertyAll(
-                                Size(screenWidth * 1, screenHeight * 0.07)),
-                            backgroundColor:
-                                WidgetStatePropertyAll(Color(0xFF027335)),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          )),
+                      child: Button1Widget(
+                        title: 'Next',
+                        fontWeight: FontWeight.w600,
+                        height: 54,
+                        width: screenWidth,
+                        color: AppColors.e_primary,
+                      ),
                     )
                   ],
                 ))

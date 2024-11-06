@@ -3,9 +3,17 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
+import '../json_data/cart_page_json/addtocartpage_json.dart';
+import '../json_data/cart_page_json/fruitslistpage_json.dart';
+import '../json_data/cart_page_json/shoppingcartpage_json.dart';
+import '../json_data/category_page_json/category_list_page_json.dart';
+import '../json_data/filter_json/search_filter_json.dart';
 import '../json_data/home_page_json/home_Category_json_data.dart';
 import '../json_data/home_page_json/home_carousel_json.dart';
 import '../json_data/home_page_json/home_json_data.dart';
+import '../json_data/search_json/search_history_json/popular_search_json.dart';
+import '../json_data/search_json/search_history_json/search_history_json.dart';
+import '../json_data/search_json/search_product_json/search_product_json.dart';
 
 class EcommerceApiService {
   static String liveApiPath = AppConstants.apiBaseUrl;
@@ -1303,6 +1311,110 @@ class EcommerceApiService {
     } catch (e) {
       // Handle any errors
       throw Exception('Failed to retrieve Carousel: $e');
+    }
+  }
+  //ecomAddtoCart
+
+  Future getaddtocart() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getAddtoCartPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+  //ecomAddtoCart
+
+  Future getshoppingcart() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getShoppingCartPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve ShoppingCart: $e');
+    }
+  }
+  //ecomcartfruitlist
+
+  Future getfruitslist() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getFruitListPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve FruitsList: $e');
+    }
+  }
+  //ecomcategorypage
+
+  Future getcategorypage() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getCategoryListPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve CategoryPage: $e');
+    }
+  }
+  //ecomsearchfilter
+
+  Future getsearchfilter() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getSearchFilterPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve SearchFilter: $e');
+    }
+  }
+  //ecomsearchistory
+
+  Future getsearchhistory() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getSearchHistoryPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve SearchHistory: $e');
+    }
+  }
+  //ecompopularsearch
+
+  Future getpopularsearch() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getPopularSearchPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve PopularSearch: $e');
+    }
+  }
+  //ecomsearchproduct
+
+  Future getsearchproduct() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getSearchProductPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve PopularSearch: $e');
     }
   }
 }

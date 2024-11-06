@@ -17,7 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: HeadingWidget(
             title: 'My Profile',
-            fontSize: 25,
+            fontSize: 24,
           ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -32,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 50,
+                  height: 0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -99,7 +99,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ]),
                       Icon(Icons.expand_more),
                     ]),
-                SizedBox(height: 24),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -149,14 +148,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ]),
                   ],
                 ),
-                SizedBox(height: 70),
+                SizedBox(height: 20),
                 _buildListTile(Icons.favorite_border, 'Favorite', () {}),
-                SizedBox(height: 24),
+                SizedBox(height: 20),
                 _buildListTile(
                     Icons.receipt_long, 'Transaction History', () {}),
-                SizedBox(height: 24),
+                SizedBox(height: 20),
                 _buildListTile(Icons.lock_outline, 'Password Manager', () {}),
-                SizedBox(height: 24),
+                SizedBox(height: 20),
                 _buildListTile(Icons.logout, 'Log out', () {}),
               ],
             ),

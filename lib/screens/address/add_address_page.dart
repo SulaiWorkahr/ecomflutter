@@ -1,4 +1,7 @@
+import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/widgets/button_widget.dart';
 import 'package:e_commerce/widgets/custom_text_field.dart';
+import 'package:e_commerce/widgets/heading_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -31,12 +34,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Customer Name',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    HeadingWidget(
+                      title: "Customer Name",
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                     CustomeTextField(
+                      borderColor: AppColors.e_grey3,
+                      onTap: () {},
                       width: double.infinity,
                       hint: 'Tony Thomas',
                     ),
@@ -48,12 +53,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Contact Number',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    HeadingWidget(
+                      title: "Contact Number",
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                     CustomeTextField(
+                      borderColor: AppColors.e_grey3,
+                      onTap: () {},
                       width: double.infinity,
                       hint: '+971 9876543210',
                     ),
@@ -65,12 +72,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Land Mark',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    HeadingWidget(
+                      title: "Land Mark",
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                     CustomeTextField(
+                      borderColor: AppColors.e_grey3,
+                      onTap: () {},
                       width: double.infinity,
                       hint: 'Lorem ipsum',
                     ),
@@ -82,12 +91,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Address',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    HeadingWidget(
+                      title: "Address",
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                     CustomeTextField(
+                      borderColor: AppColors.e_grey3,
+                      onTap: () {},
                       width: double.infinity,
                       hint:
                           'Lorem ipsum dolor sit amet consectetur. Eleifend diam ipsum tortor',
@@ -99,21 +110,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
           ),
           Spacer(),
           Padding(
-            padding: EdgeInsets.only(bottom: 16),
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
-                  minimumSize: WidgetStatePropertyAll(
-                      Size(screenWidth * 0.9, screenHeight * 0.07)),
-                  backgroundColor: WidgetStatePropertyAll(Color(0xFF027335)),
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Submit',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                )),
-          ),
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              child: ButtonWidget(
+                title: 'Submit',
+                width: screenWidth * 1,
+                color: AppColors.e_primary,
+                onTap: () {},
+              )),
         ],
       ),
     );

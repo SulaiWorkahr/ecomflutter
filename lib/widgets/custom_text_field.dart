@@ -44,6 +44,7 @@ class CustomeTextField extends StatelessWidget {
   final String? labelText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+
   var margin;
   var control;
   var initialValue;

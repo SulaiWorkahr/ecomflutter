@@ -1,16 +1,72 @@
+import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class Cartpage extends StatefulWidget {
-  const Cartpage({super.key});
+import '../../constants/app_assets.dart';
+import '../../model/cart_model/shoppingcartpage_model.dart';
+import '../../services/comfuncservice.dart';
+import '../../services/ecommerce_api_service.dart';
+import '../../widgets/svgiconButtonWidget.dart';
+
+class ShoppingCartPage extends StatefulWidget {
+  const ShoppingCartPage({super.key});
 
   @override
-  State<Cartpage> createState() => _CartpageState();
+  State<ShoppingCartPage> createState() => _ShoppingCartPageState();
 }
 
-class _CartpageState extends State<Cartpage> {
+class _ShoppingCartPageState extends State<ShoppingCartPage> {
+  final EcommerceApiService apiService = EcommerceApiService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getsearchproduct();
+  }
+
+  //shoppingcart
+  List<ShoppingCart> shoppingcartpage = [];
+  List<ShoppingCart> shoppingcartpageAll = [];
+  bool isLoading = false;
+
+  Future getsearchproduct() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getsearchproduct();
+      var response = shoppingcartpageDataFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          shoppingcartpage = response.list;
+          shoppingcartpageAll = shoppingcartpage;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          shoppingcartpage = [];
+          shoppingcartpageAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        shoppingcartpage = [];
+        shoppingcartpageAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
+
   final List<Map<String, String>> shopping = [
     {
-      'image': 'assets/images/sweetpotato.png',
+      'image': 'assets/images/c_sweetpotato.png',
       'minus': 'assets/images/minus.png',
       'number': '2',
       'plus': 'assets/images/plus.png',
@@ -46,41 +102,34 @@ class _CartpageState extends State<Cartpage> {
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),
-            child: TextField(
-              style: const TextStyle(color: Colors.black),
-              cursorColor: const Color(0xFF027335),
-              decoration: const InputDecoration(
+            child: CustomeTextField(
+                width: screenWidth,
+                hint: 'Search Beverage or Foods',
+                hintColor: AppColors.e_grey1,
                 prefixIcon: Icon(
                   Icons.search_outlined,
-                  color: Color(0xFFB0B0B0),
-                ),
-                hintText: 'Search Beverage or Foods',
-                hintStyle: TextStyle(color: Color(0xFFB0B0B0)),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-              ),
-              onChanged: (value) {},
-            ),
+                  color: AppColors.e_grey1,
+                )),
           ),
           const SizedBox(height: 8),
 
           // Scrollable content below
           Expanded(
             child: ListView.builder(
-              itemCount: shopping.length, // Dynamic length
+              itemCount: shoppingcartpage.length, // Dynamic length
               itemBuilder: (context, index) {
+                final e = shoppingcartpage[index];
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * 0.04,
                       vertical: screenHeight * 0.02),
-                  color: Colors.black12,
+                  color: AppColors.e_grey3,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        shopping[index]['image']!,
+                      Image.asset(
+                        e.image.toString(),
                         height: 78,
                         width: 84,
                         fit: BoxFit.cover,
@@ -94,28 +143,28 @@ class _CartpageState extends State<Cartpage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  shopping[index]['name'] ?? 'No name',
+                                  e.title.toString(),
                                   style: const TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
-                                  shopping[index]['singletotal'] ?? 'AED0.0',
+                                  e.singletotal.toString(),
                                   style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700,
-                                      color: Color(0xFF027335)),
+                                      color: AppColors.e_primary),
                                 ),
                               ],
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              shopping[index]['type'] ?? 'No type',
+                              e.type.toString(),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF888888),
+                                color: AppColors.e_grey,
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -123,19 +172,19 @@ class _CartpageState extends State<Cartpage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  shopping[index]['actualprice'] ?? 'AED0.0',
+                                  e.actualprice.toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
-                                  shopping[index]['oldprice'] ?? 'AED0.0',
+                                  e.oldprice.toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     decoration: TextDecoration.lineThrough,
-                                    decorationColor: Color(0xFF888888),
-                                    color: Color(0xFF888888),
+                                    decorationColor: AppColors.e_grey,
+                                    color: AppColors.e_grey,
                                   ),
                                 ),
                                 const SizedBox(width: 10),
@@ -145,8 +194,8 @@ class _CartpageState extends State<Cartpage> {
                                       onTap: () {
                                         // Handle minus action
                                       },
-                                      child: Image.network(
-                                        shopping[index]['minus']!,
+                                      child: Image.asset(
+                                        e.minus.toString(),
                                         height: 30,
                                         width: 30,
                                       ),
@@ -155,7 +204,7 @@ class _CartpageState extends State<Cartpage> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16),
                                       child: Text(
-                                        shopping[index]['number'] ?? '0',
+                                        '0',
                                         style: const TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600,
@@ -166,8 +215,8 @@ class _CartpageState extends State<Cartpage> {
                                       onTap: () {
                                         // Handle plus action
                                       },
-                                      child: Image.network(
-                                        shopping[index]['plus']!,
+                                      child: Image.asset(
+                                        e.plus.toString(),
                                         height: 30,
                                         width: 30,
                                       ),
@@ -189,9 +238,11 @@ class _CartpageState extends State<Cartpage> {
           // Bottom container for total or checkout button
           Container(
               width: double.infinity,
-              color: Color(0xFFF1FFF7),
+              color: AppColors.e_lightgreen,
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.04,
+                    vertical: screenHeight * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -200,50 +251,32 @@ class _CartpageState extends State<Cartpage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '3item | 6 Qty',
+                          '3 item | 6 Qty',
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              color: (Color(0xFF027335))),
+                              color: AppColors.e_primary),
                         ),
                         Text(
                           'Total: AED70.00',
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: (Color(0xFF027335))),
+                              color: AppColors.e_primary),
                         )
                       ],
                     ),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            minimumSize: WidgetStatePropertyAll(
-                                Size(screenWidth * 0.05, screenHeight * 0.065)),
-                            backgroundColor:
-                                WidgetStatePropertyAll(Color(0xFF027335))),
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Checkout',
-                              style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w700),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Image.asset(
-                              'images/arrow-right.png',
-                              height: 18,
-                              width: 18,
-                            ),
-                          ],
-                        ))
+                    SvgIconButtonWidget(
+                      title: 'Add to cart',
+                      width: 170,
+                      color: AppColors.e_primary,
+                      onTap: () {},
+                      leadingIcon: Image.asset(
+                        'images/arrow-right.png',
+                        width: 18,
+                        height: 18,
+                      ),
+                    ),
                   ],
                 ),
               )),

@@ -1,4 +1,9 @@
+import 'package:e_commerce/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/button1_widget.dart';
+import '../widgets/heading_widget.dart';
+import '../widgets/sub_heading_widget.dart';
 
 class LocationAllowPage extends StatefulWidget {
   const LocationAllowPage({super.key});
@@ -21,27 +26,26 @@ class _LocationAllowPageState extends State<LocationAllowPage> {
                 top: screenHeight * 0.06,
                 left: screenWidth * 0.05,
                 right: screenWidth * 0.1),
-            child: Text(
-              'We don’t have your location, yet!',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+            child: HeadingWidget(
+              title: 'We don’t have your location, yet!',
+              fontSize: 25,
+              fontWeight: FontWeight.w700,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: screenHeight * 0.15,
+                top: screenHeight * 0.19,
                 left: screenWidth * 0.05,
                 right: screenWidth * 0.1),
-            child: Text(
-              'Set your location to start exploring laundering service near you',
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF888888)),
+            child: SubHeadingWidget(
+              title:
+                  'Set your location to start exploring laundering service near you',
+              fontSize: 14,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(top: screenHeight * 0.25),
-            child: Image.network(
+            child: Image.asset(
               'assets/images/map.png',
               width: screenWidth * double.infinity,
               height: screenHeight * double.infinity,
@@ -54,29 +58,24 @@ class _LocationAllowPageState extends State<LocationAllowPage> {
               height: screenHeight * 0.2,
               width: screenWidth,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.e_white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(24),
                       topRight: Radius.circular(24))),
               child: Padding(
-                padding: EdgeInsets.only(top: screenHeight * 0.03),
+                padding: EdgeInsets.only(
+                    top: screenHeight * 0.03,
+                    right: screenWidth * 0.05,
+                    left: screenWidth * 0.05),
                 child: Column(
                   children: [
-                    ElevatedButton(
-                        style: ButtonStyle(
-                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                          minimumSize: WidgetStatePropertyAll(
-                              Size(screenWidth * 0.9, screenHeight * 0.07)),
-                          backgroundColor:
-                              WidgetStatePropertyAll(Color(0xFF027335)),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'Allow access your location',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w600),
-                        )),
+                    Button1Widget(
+                      title: 'Next',
+                      fontWeight: FontWeight.w600,
+                      height: 54,
+                      width: screenWidth,
+                      color: AppColors.e_primary,
+                    ),
                     SizedBox(
                       height: screenHeight * 0.02,
                     ),
@@ -87,7 +86,7 @@ class _LocationAllowPageState extends State<LocationAllowPage> {
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF027335)),
+                            color: AppColors.e_primary),
                       ),
                     )
                   ],

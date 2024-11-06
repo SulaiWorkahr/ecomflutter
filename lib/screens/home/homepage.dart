@@ -140,7 +140,7 @@ class _HomepageState extends State<Homepage> {
     } catch (e) {
       setState(() {
         carouselpage = [];
-        carouselpage = [];
+        carouselpageAll = [];
         isLoading2 = false;
       });
       showInSnackBar(context, 'Error occurred: $e');
@@ -703,35 +703,6 @@ class _HomepageState extends State<Homepage> {
                                       height: 18,
                                     ),
                                   ),
-
-                                  //     ElevatedButton(
-                                  //   style: ElevatedButton.styleFrom(
-                                  //     shape: RoundedRectangleBorder(
-                                  //       borderRadius: BorderRadius.circular(10),
-                                  //     ),
-                                  //     backgroundColor: Color(0xFF027335),
-                                  //   ),
-                                  //   onPressed: () {},
-                                  //   child: Row(
-                                  //     mainAxisAlignment:
-                                  //         MainAxisAlignment.center,
-                                  //     children: [
-                                  //       Image.asset(
-                                  //         'assets/images/cart.png',
-                                  //         height: 18,
-                                  //         width: 18,
-                                  //       ),
-                                  //       SizedBox(width: 8),
-                                  //       Text(
-                                  //         'Add to cart',
-                                  //         style: const TextStyle(
-                                  //           fontSize: 14,
-                                  //           fontWeight: FontWeight.w700,
-                                  //         ),
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // ),
                                 ),
                               ),
                             ],

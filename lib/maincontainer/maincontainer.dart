@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/cart/cartpage.dart';
+import '../screens/cart/shoppingcartpage.dart';
 import '../screens/home/homepage.dart';
 import '../screens/orderPage/myorder.dart';
 import '../screens/profile/profile_screen.dart';
@@ -16,7 +16,7 @@ class _MaincontainerState extends State<Maincontainer> {
   // Screens for each tab
   final List<Widget> _screens = [
     Homepage(),
-    Cartpage(),
+    ShoppingCartPage(),
     Orederpage(),
     ProfileScreen()
   ];
@@ -45,7 +45,7 @@ class _MaincontainerState extends State<Maincontainer> {
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(
-              NetworkImage(
+              AssetImage(
                 'assets/images/order.png',
               ),
               size: 20, // Set size for the icon

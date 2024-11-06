@@ -1,4 +1,12 @@
+import 'package:e_commerce/constants/app_assets.dart';
+import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+
+import '../../../model/cart_model/fruitslistpage_model.dart';
+import '../../../services/comfuncservice.dart';
+import '../../../services/ecommerce_api_service.dart';
+import '../../../widgets/svgiconButtonWidget.dart';
 
 class Fruitslistpage extends StatefulWidget {
   const Fruitslistpage({super.key});
@@ -8,6 +16,54 @@ class Fruitslistpage extends StatefulWidget {
 }
 
 class _FruitslistpageState extends State<Fruitslistpage> {
+  final EcommerceApiService apiService = EcommerceApiService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getfruitslist();
+  }
+
+  //AddtoCart
+  List<FruitsLists> fruitlistpage = [];
+  List<FruitsLists> fruitlistpageAll = [];
+  bool isLoading = false;
+
+  Future getfruitslist() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getfruitslist();
+      var response = fruitlistpageDataFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          fruitlistpage = response.list;
+          fruitlistpageAll = fruitlistpage;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          fruitlistpage = [];
+          fruitlistpageAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        fruitlistpage = [];
+        fruitlistpageAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
+
   final List<Map<String, String>> fruitsList = [
     {
       'image': 'assets/images/tomato.png',
@@ -41,29 +97,24 @@ class _FruitslistpageState extends State<Fruitslistpage> {
           // Search Field
           Padding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-            child: TextField(
-              style: const TextStyle(color: Colors.black),
-              cursorColor: const Color(0xFF027335),
-              decoration: const InputDecoration(
-                prefixIcon:
-                    Icon(Icons.search_outlined, color: Color(0xFFB0B0B0)),
-                hintText: 'Search Beverage or Foods',
-                hintStyle: TextStyle(color: Color(0xFFB0B0B0)),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
+            child: CustomeTextField(
+              borderColor: AppColors.e_grey3,
+              width: screenWidth,
+              prefixIcon: Icon(
+                Icons.search_outlined,
+                color: const Color.fromARGB(255, 94, 66, 66),
               ),
-              onChanged: (value) {},
             ),
+            //
           ),
           const SizedBox(height: 8),
 
           // List of Fruits
           Expanded(
             child: ListView.builder(
-              itemCount: fruitsList.length,
+              itemCount: fruitlistpage.length,
               itemBuilder: (context, index) {
-                final fruit = fruitsList[index];
+                final e = fruitlistpage[index];
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   padding: EdgeInsets.symmetric(
@@ -74,8 +125,8 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        fruit['image']!,
+                      Image.asset(
+                        e.image,
                         height: 78,
                         width: 84,
                         fit: BoxFit.cover,
@@ -86,7 +137,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              fruit['name'] ?? 'No name',
+                              e.title.toString(),
                               style: const TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w600,
@@ -96,7 +147,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                             Row(
                               children: [
                                 Text(
-                                  fruit['actualprice'] ?? 'AED0.0',
+                                  e.actualprice.toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
@@ -106,7 +157,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                   width: 8,
                                 ),
                                 Text(
-                                  fruit['oldprice'] ?? 'AED0.0',
+                                  e.oldprice.toString(),
                                   style: const TextStyle(
                                     fontSize: 14,
                                     decoration: TextDecoration.lineThrough,
@@ -118,8 +169,8 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                             const SizedBox(height: 8),
                             Row(
                               children: [
-                                Image.network(
-                                  'assets/images/Discount.png',
+                                Image.asset(
+                                  e.discounticon.toString(),
                                   height: 18,
                                   width: 18,
                                 ),
@@ -131,8 +182,8 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                 const Spacer(),
                                 GestureDetector(
                                   onTap: () {},
-                                  child: Image.network(
-                                    fruit['minus']!,
+                                  child: Image.asset(
+                                    e.minus.toString(),
                                     height: 30,
                                     width: 30,
                                   ),
@@ -141,7 +192,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16),
                                   child: Text(
-                                    fruit['number'] ?? '0',
+                                    e.number.toString(),
                                     style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,
@@ -150,8 +201,8 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                 ),
                                 GestureDetector(
                                   onTap: () {},
-                                  child: Image.network(
-                                    fruit['plus']!,
+                                  child: Image.asset(
+                                    e.plus.toString(),
                                     height: 30,
                                     width: 30,
                                   ),
@@ -170,68 +221,49 @@ class _FruitslistpageState extends State<Fruitslistpage> {
 
           // Checkout Section
           Container(
-            width: double.infinity,
-            color: const Color(0xFFF1FFF7),
-            padding: const EdgeInsets.all(12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              width: double.infinity,
+              color: AppColors.e_lightgreen,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.04,
+                    vertical: screenHeight * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      '3 items | 6 Qty',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF027335),
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '3 item | 6 Qty',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.e_primary),
+                        ),
+                        Text(
+                          'Total: AED70.00',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.e_primary),
+                        )
+                      ],
                     ),
-                    const Text(
-                      'Total: AED70.00',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF027335),
+                    SvgIconButtonWidget(
+                      color: AppColors.e_primary,
+                      onTap: () {},
+                      title: 'Add to cart',
+                      width: 170,
+                      leadingIcon: Image.asset(
+                        'images/arrow-right.png',
+                        width: 18,
+                        height: 18,
                       ),
                     ),
                   ],
                 ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    minimumSize: MaterialStateProperty.all(
-                      Size(screenWidth * 0.3, screenHeight * 0.065),
-                    ),
-                    backgroundColor:
-                        MaterialStateProperty.all(const Color(0xFF027335)),
-                  ),
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Checkout',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Image.network(
-                        'assets/images/arrow-right.png',
-                        height: 18,
-                        width: 18,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+              )),
         ],
       ),
     );

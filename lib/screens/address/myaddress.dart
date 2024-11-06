@@ -1,3 +1,6 @@
+import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/widgets/heading_widget.dart';
+import 'package:e_commerce/widgets/sub_heading_widget.dart';
 import 'package:flutter/material.dart';
 
 class Myaddress extends StatefulWidget {
@@ -22,7 +25,7 @@ class _MyaddressState extends State<Myaddress> {
             padding: EdgeInsets.only(
               left: screenWidth * 0.04,
               right: screenWidth * 0.04,
-              top: screenHeight * 0.04,
+              top: screenHeight * 0.02,
               bottom: screenHeight * 0.02,
             ),
             child: Column(
@@ -34,39 +37,35 @@ class _MyaddressState extends State<Myaddress> {
                       children: [
                         Icon(
                           Icons.home,
-                          color: Color(0xFF027335),
+                          color: AppColors.e_primary,
                         ),
                         SizedBox(
                           width: 8,
                         ),
-                        Text(
-                          'Home',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF888888)),
+                        HeadingWidget(
+                          title: 'Home',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.e_grey,
                         )
                       ],
                     ),
                     SizedBox(
                       height: 4,
                     ),
-                    Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFF888888)),
+                    SubHeadingWidget(
+                      title:
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                      color: AppColors.e_grey,
+                      fontSize: 14,
                     ),
                     SizedBox(
                       height: 4,
                     ),
-                    Text(
-                      'Contact : 1234567890',
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xFF888888)),
+                    SubHeadingWidget(
+                      title: 'Contact : 1234567890',
+                      color: AppColors.e_grey,
+                      fontSize: 14,
                     ),
                   ],
                 ),
@@ -80,7 +79,7 @@ class _MyaddressState extends State<Myaddress> {
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF027335)),
+                            color: AppColors.e_primary),
                       ),
                     ),
                     SizedBox(
@@ -93,7 +92,7 @@ class _MyaddressState extends State<Myaddress> {
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF027335)),
+                            color: AppColors.e_primary),
                       ),
                     ),
                   ],
@@ -102,7 +101,7 @@ class _MyaddressState extends State<Myaddress> {
             ),
           ),
           Divider(
-            color: Color(0xFFEDEDED),
+            color: AppColors.e_grey3,
           ),
         ],
       ),

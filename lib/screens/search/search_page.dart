@@ -1,3 +1,4 @@
+import 'package:e_commerce/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,14 +25,14 @@ class _SearchPageState extends State<SearchPage> {
             children: [
               TextField(
                 style: const TextStyle(color: Colors.black),
-                cursorColor: Color(0xFF027335),
+                cursorColor: AppColors.e_primary,
                 decoration: InputDecoration(
                     suffix: TextButton(
                       onPressed: () {},
                       child: Text(
                         'Search',
                         style: TextStyle(
-                          color: Color(0xFF027335),
+                          color: AppColors.primary,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -39,10 +40,10 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                     prefixIcon: Icon(
                       Icons.search_outlined,
-                      color: Color(0xFFB0B0B0),
+                      color: AppColors.e_grey,
                     ),
                     hintText: 'Search Beverage for foods',
-                    hintStyle: TextStyle(color: Color(0xFFB0B0B0)),
+                    hintStyle: TextStyle(color: AppColors.e_grey1),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),

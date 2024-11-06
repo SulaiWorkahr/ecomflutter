@@ -1,5 +1,11 @@
 import 'package:e_commerce/constants/constants.dart';
+import 'package:e_commerce/widgets/heading_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../model/search_model/search_history_model/popular_search_model.dart';
+import '../../model/search_model/search_history_model/search_history_model.dart';
+import '../../services/comfuncservice.dart';
+import '../../services/ecommerce_api_service.dart';
 
 class SearchHistory extends StatefulWidget {
   const SearchHistory({super.key});
@@ -9,20 +15,93 @@ class SearchHistory extends StatefulWidget {
 }
 
 class _SearchHistoryState extends State<SearchHistory> {
-  final List<Map<String, dynamic>> searchHistory = [
-    {'label': 'Apple', 'image': AppAssets.s_apple},
-    {'label': 'orange', 'image': AppAssets.s_orange},
-    {'label': 'Chilly', 'image': AppAssets.s_chilly},
-    {'label': 'Lemon', 'image': AppAssets.s_lemon},
-    {'label': 'Onion', 'image': AppAssets.s_onion},
-    {'label': 'Pineapple', 'image': AppAssets.s_pineapple},
-    {'label': 'Strawberry', 'image': AppAssets.s_strawberry},
-  ];
-  final List<Map<String, dynamic>> popularSearch = [
-    {'label': 'Apple', 'image': AppAssets.s_apple},
-    {'label': 'orange', 'image': AppAssets.s_orange},
-    {'label': 'Chilly', 'image': AppAssets.s_chilly},
-  ];
+  final EcommerceApiService apiService = EcommerceApiService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getsearchhistory();
+    getpopularsearch();
+  }
+
+//SearchHistory
+  List<SearchHistoryList> searchhistorypage = [];
+  List<SearchHistoryList> searchhistorypageAll = [];
+  bool isLoading = false;
+
+  Future getsearchhistory() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getsearchhistory();
+      var response = searchhistorypageDataFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          searchhistorypage = response.list;
+          searchhistorypageAll = searchhistorypage;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          searchhistorypage = [];
+          searchhistorypageAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        searchhistorypage = [];
+        searchhistorypageAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
+
+//popularSearch
+  List<PopularSearchs> popularsearchpage = [];
+  List<PopularSearchs> popularsearchpageAll = [];
+  bool isLoading1 = false;
+
+  Future getpopularsearch() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getpopularsearch();
+      var response = popularsearchpageDataFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          popularsearchpage = response.list;
+          popularsearchpageAll = popularsearchpage;
+          isLoading1 = false;
+        });
+      } else {
+        setState(() {
+          searchhistorypage = [];
+          searchhistorypageAll = [];
+          isLoading1 = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        searchhistorypage = [];
+        searchhistorypageAll = [];
+        isLoading1 = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +121,14 @@ class _SearchHistoryState extends State<SearchHistory> {
             children: [
               TextField(
                 style: const TextStyle(color: Colors.black),
-                cursorColor: const Color(0xFF027335),
+                cursorColor: AppColors.e_primary,
                 decoration: InputDecoration(
                   suffix: TextButton(
                     onPressed: () {},
                     child: const Text(
                       'Search',
                       style: TextStyle(
-                        color: Color(0xFF027335),
+                        color: AppColors.e_primary,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -57,7 +136,7 @@ class _SearchHistoryState extends State<SearchHistory> {
                   ),
                   prefixIcon: const Icon(
                     Icons.search_outlined,
-                    color: Color(0xFFB0B0B0),
+                    color: AppColors.e_grey1,
                   ),
                   hintText: 'Search Beverage or Foods',
                   hintStyle: const TextStyle(color: Color(0xFFB0B0B0)),
@@ -71,19 +150,16 @@ class _SearchHistoryState extends State<SearchHistory> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Search History',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  HeadingWidget(
+                    title: 'Search History',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const Text(
-                    'Delete',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF009444)),
+                  HeadingWidget(
+                    title: 'Delete',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.e_primary,
                   ),
                 ],
               ),
@@ -91,22 +167,23 @@ class _SearchHistoryState extends State<SearchHistory> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 8.0,
-                children: searchHistory.map((item) {
+                children: searchhistorypage.map((item) {
                   return Chip(
                     side: BorderSide.none,
-                    backgroundColor: Color(0xFFF1FFF7),
+                    backgroundColor: AppColors.e_lightgreen,
                     label: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Image.asset(
-                          item['image'] ?? '',
-                          width: 16,
-                          height: 16,
-                        ),
+                        if (item.image != null)
+                          Image.asset(
+                            item.image.toString(),
+                            width: 16,
+                            height: 16,
+                          ),
                         const SizedBox(width: 8),
                         Text(
-                          item['label'],
-                          style: TextStyle(color: Color(0xFF027335)),
+                          item.title.toString(),
+                          style: TextStyle(color: AppColors.e_primary),
                         ),
                       ],
                     ),
@@ -117,12 +194,10 @@ class _SearchHistoryState extends State<SearchHistory> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Search History',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  HeadingWidget(
+                    title: 'Popular Search',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ],
               ),
@@ -130,22 +205,22 @@ class _SearchHistoryState extends State<SearchHistory> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 8.0,
-                children: popularSearch.map((item) {
+                children: popularsearchpage.map((item) {
                   return Chip(
                     side: BorderSide.none,
-                    backgroundColor: Color(0xFFF1FFF7),
+                    backgroundColor: AppColors.e_lightgreen,
                     label: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Image.asset(
-                          item['image'] ?? '',
+                          item.image.toString(),
                           width: 16,
                           height: 16,
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          item['label'],
-                          style: TextStyle(color: Color(0xFF027335)),
+                          item.title.toString(),
+                          style: TextStyle(color: AppColors.e_primary),
                         ),
                       ],
                     ),
