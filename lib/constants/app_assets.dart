@@ -11,6 +11,7 @@ class AppAssets {
   static const String objects = 'assets/images/obejcts.png';
   static const String basket = 'assets/images/basket.png';
   static const String discount = 'assets/images/basket.png';
+  static const String sweetpotato = 'assets/images/sweetpotato.png';
 
 //SearchHistory
   static const String s_apple = 'images/s_apple.png';
@@ -27,6 +28,15 @@ class AppAssets {
   static const String profilepayment = 'images/profile_payment.png';
   static const String profilesettings = 'images/profile_setting.png';
   static const String genderal = 'images/genderal.png';
+
+  static const String homeicon = 'images/orderpreview_homeicon.png';
+  static const String vector = 'images/Vector.png';
+  static const String gpay = 'images/google-pay-icon.png';
+  static const String phonepay = 'images/phonepay-icon.png';
+  static const String upiicon = 'images/upi-icon.png';
+  static const String card = 'images/Card.png';
+  static const String shoopingbag = 'images/shopping-bag.png';
+  static const String circle = 'images/circle.png';
 
   //Cart
   static const String c_lemon = 'images/c_lemon.png';
