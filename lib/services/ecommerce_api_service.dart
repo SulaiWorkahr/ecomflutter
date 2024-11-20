@@ -1326,7 +1326,7 @@ class EcommerceApiService {
       throw Exception('Failed to retrieve AddtoCart: $e');
     }
   }
-  //ecomAddtoCart
+  //ecomshoppingcart
 
   Future getshoppingcart() async {
     try {

@@ -1,4 +1,7 @@
 import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/maincontainer/maincontainer.dart';
+import 'package:e_commerce/screens/auth/login_page.dart';
+import 'package:e_commerce/screens/home/homepage.dart';
 import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:e_commerce/widgets/heading_widget.dart';
 import 'package:e_commerce/widgets/sub_heading_widget.dart';
@@ -7,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/button1_widget.dart';
+import '../../widgets/button_widget.dart';
 import '../../widgets/custom_rounded_textfield.dart';
 import '../../widgets/outline_btn_widget.dart';
 
@@ -112,38 +116,46 @@ class _RegistorPageState extends State<RegistorPage> {
                           top: screenHeight * 0.02,
                           right: screenWidth * 0.05),
                       child: Button1Widget(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Maincontainer()),
+                          );
+                        },
+                        borderRadius: 10,
                         title: 'Register',
                         height: 54,
                         width: screenWidth,
                         color: AppColors.e_primary,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: screenWidth * 0.05,
-                          right: screenWidth * 0.05,
-                          top: screenHeight * 0.01),
-                      child: Row(
-                        children: [
-                          Checkbox(value: value, onChanged: (Value) {}),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                right: screenWidth * 0.2, top: 0.02),
-                            child: RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                text: 'By tapping “Sign Up” you accept our',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.e_grey1),
-                              ),
-                              TextSpan(text: ' terms and condition')
-                            ])),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(
+                    //       left: screenWidth * 0.05,
+                    //       right: screenWidth * 0.05,
+                    //       top: screenHeight * 0.01),
+                    //   child: Row(
+                    //     children: [
+                    //       Checkbox(value: value, onChanged: (Value) {}),
+                    //       Padding(
+                    //         padding: EdgeInsets.only(
+                    //             right: screenWidth * 0.2, top: 0.02),
+                    //         child: RichText(
+                    //             text: TextSpan(children: [
+                    //           TextSpan(
+                    //             text: 'By tapping “Sign Up” you accept our',
+                    //             style: TextStyle(
+                    //                 fontSize: 15,
+                    //                 fontWeight: FontWeight.w400,
+                    //                 color: AppColors.e_grey1),
+                    //           ),
+                    //           // TextSpan(text: ' terms and condition')
+                    //         ])),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     Padding(
                       padding: EdgeInsets.only(top: screenHeight * 0.02),
                       child: Center(
@@ -154,12 +166,31 @@ class _RegistorPageState extends State<RegistorPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          left: screenWidth * 0.05, top: screenHeight * 0.02),
-                      child: OutlineBtnWidget(
-                        height: 54,
-                        title: 'Sign in',
-                        titleColor: AppColors.e_primary,
-                        borderColor: AppColors.e_primary,
+                          left: screenWidth * 0.05,
+                          top: screenHeight * 0.02,
+                          right: screenWidth * 0.05),
+                      child: InkWell(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.e_primary),
+                              borderRadius: BorderRadius.circular(10)),
+                          width: screenWidth,
+                          height: 54,
+                          child: Center(
+                            child: Text(
+                              'Sig in',
+                              style: TextStyle(
+                                  fontSize: 18, color: AppColors.e_primary),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
+                        },
                       ),
                     ),
                   ],

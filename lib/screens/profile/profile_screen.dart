@@ -19,12 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             title: 'My Profile',
             fontSize: 24,
           ),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+         
         ),
         body: SingleChildScrollView(
           child: Padding(

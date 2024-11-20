@@ -22,7 +22,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   void initState() {
     super.initState();
 
-    getsearchproduct();
+    getshoppingcart();
   }
 
   //shoppingcart
@@ -30,13 +30,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   List<ShoppingCart> shoppingcartpageAll = [];
   bool isLoading = false;
 
-  Future getsearchproduct() async {
+  Future getshoppingcart() async {
     setState(() {
       isLoading = true;
     });
 
     try {
-      var result = await apiService.getsearchproduct();
+      var result = await apiService.getshoppingcart();
       var response = shoppingcartpageDataFromJson(result);
       if (response.status.toString() == 'SUCCESS') {
         setState(() {
@@ -105,10 +105,10 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
             child: CustomeTextField(
                 width: screenWidth,
                 hint: 'Search Beverage or Foods',
-                hintColor: AppColors.e_grey1,
+                hintColor: AppColors.e_grey,
                 prefixIcon: Icon(
                   Icons.search_outlined,
-                  color: AppColors.e_grey1,
+                  color: AppColors.e_grey,
                 )),
           ),
           const SizedBox(height: 8),

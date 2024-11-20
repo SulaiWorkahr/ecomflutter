@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/constants/app_assets.dart';
+import 'package:e_commerce/screens/onboarding/onboarding_page_second.dart';
 import 'package:e_commerce/widgets/heading_widget.dart';
 import 'package:e_commerce/widgets/sub_heading_widget.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +43,6 @@ class _OnboardingPagefirstState extends State<OnboardingPagefirst> {
             Padding(
                 padding: EdgeInsets.only(
                   top: screenHeight * 0.49,
-                  // left: screenWidth * 0.3,
-                  // right: screenHeight * 0.3
                 ),
                 child: Column(
                   children: [
@@ -86,11 +85,20 @@ class _OnboardingPagefirstState extends State<OnboardingPagefirst> {
                           right: screenWidth * 0.07,
                           bottom: screenHeight * 0.02),
                       child: Button1Widget(
+                        borderRadius: 10,
                         title: 'Next',
                         fontWeight: FontWeight.w600,
                         height: 54,
                         width: screenWidth,
                         color: AppColors.e_primary,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const OnboardingPagesecond()),
+                          );
+                        },
                       ),
                     )
                   ],

@@ -1,3 +1,4 @@
+import 'package:e_commerce/constants/constants.dart';
 import 'package:e_commerce/widgets/heading_widget.dart';
 import 'package:e_commerce/widgets/sub_heading_widget.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,8 @@ class _OrderPreviewState extends State<OrderPreview> {
           title: "Order Preview",
           fontSize: 20,
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: AppColors.e_white,
+        foregroundColor: AppColors.e_black,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -70,16 +71,18 @@ class _OrderPreviewState extends State<OrderPreview> {
                     title: "Lorem ipsum dolor sit...",
                     fontSize: 12,
                   ),
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.arrow_drop_down))
                 ],
               ),
               SizedBox(height: 20),
               Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.e_white,
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
+                        color: AppColors.e_grey3,
                         spreadRadius: 1,
                         blurRadius: 5,
                       ),
@@ -92,7 +95,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                             padding: const EdgeInsets.all(13.0),
                             child: Row(children: [
                               Image.asset(
-                                AppAssets.sweetpotato,
+                                AppAssets.c_tomato,
                                 height: 80,
                                 width: 80,
                               ),
@@ -104,12 +107,13 @@ class _OrderPreviewState extends State<OrderPreview> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                     SubHeadingWidget(
-                                        title: "Fruits", color: Colors.grey),
+                                        title: "Fruits",
+                                        color: AppColors.e_grey),
                                     Text(
                                       "AED 20.0",
                                       style: TextStyle(
                                         decoration: TextDecoration.lineThrough,
-                                        color: Colors.grey,
+                                        color: AppColors.e_grey,
                                       ),
                                     ),
                                     Row(
@@ -118,7 +122,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                                       children: [
                                         HeadingWidget(
                                             title: "AED $itemPrice",
-                                            color: Colors.black,
+                                            color: AppColors.e_black,
                                             fontWeight: FontWeight.bold),
                                         SizedBox(width: 15),
                                         Row(
@@ -147,7 +151,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                                   ])
                             ])),
                         Divider(
-                          color: Colors.grey,
+                          color: AppColors.e_grey3,
                         ),
                         Padding(
                             padding: const EdgeInsets.all(13.0),
@@ -159,7 +163,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                                 ),
                                 Icon(
                                   Icons.add_circle_outline_rounded,
-                                  color: Colors.grey,
+                                  color: AppColors.e_grey2,
                                 )
                               ],
                             ))
@@ -175,11 +179,11 @@ class _OrderPreviewState extends State<OrderPreview> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.e_white,
                   borderRadius: BorderRadius.circular(8),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: AppColors.e_grey3,
                       spreadRadius: 1,
                       blurRadius: 5,
                     ),
@@ -227,14 +231,15 @@ class _OrderPreviewState extends State<OrderPreview> {
                             ])),
                     SizedBox(height: 8.0),
                     Divider(
-                      color: Colors.grey,
+                      color: AppColors.e_grey3,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         HeadingWidget(title: 'View more Coupons '),
                         Icon(Icons.chevron_right)
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -247,7 +252,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                   ),
                   SubHeadingWidget(
                     title: "Your Product is Always Fresh",
-                    color: Colors.grey,
+                    color: AppColors.e_grey,
                   ),
                   SizedBox(height: 8),
                   Row(
@@ -259,12 +264,12 @@ class _OrderPreviewState extends State<OrderPreview> {
                           width: 150,
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppColors.e_white,
                             borderRadius: BorderRadius.circular(12.0),
                             border: Border.all(
                               color: selectedOption == 1
-                                  ? Colors.green
-                                  : Colors.grey.shade300,
+                                  ? AppColors.e_primary
+                                  : AppColors.e_grey3,
                               width: selectedOption == 1 ? 2 : 1,
                             ),
                           ),
@@ -273,7 +278,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                             children: [
                               HeadingWidget(
                                 title: 'Standard',
-                                color: Colors.grey,
+                                color: AppColors.e_grey,
                               ),
                               Row(
                                 children: [
@@ -281,13 +286,13 @@ class _OrderPreviewState extends State<OrderPreview> {
                                     title: "30-35 Mins",
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                    color: AppColors.e_black,
                                   ),
                                   Spacer(),
                                   if (selectedOption == 1)
                                     Icon(
                                       Icons.check_circle,
-                                      color: Colors.green,
+                                      color: AppColors.e_primary,
                                       size: 20,
                                     ),
                                 ],
@@ -298,11 +303,10 @@ class _OrderPreviewState extends State<OrderPreview> {
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                 ),
-                                SubHeadingWidget(
-                                  title: "Delivery Charges",
-                                )
                               ]),
-                              SizedBox(height: 8.0),
+                              SubHeadingWidget(
+                                title: "Delivery Charges",
+                              ),
                               SubHeadingWidget(
                                 title: "Recommended If You are in a hurry",
                               ),
@@ -316,7 +320,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                           width: 150,
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: AppColors.e_white,
                             borderRadius: BorderRadius.circular(12.0),
                             border: Border.all(
                               color: selectedOption == 2
@@ -358,7 +362,6 @@ class _OrderPreviewState extends State<OrderPreview> {
                               SubHeadingWidget(
                                 title: "Delivery Charges",
                               ),
-                              SizedBox(height: 8.0),
                               SubHeadingWidget(
                                 title: "Recommended If You are in a hurry",
                               ),
@@ -417,7 +420,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                     Divider(
                       color: Colors.grey,
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -437,7 +440,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -449,7 +452,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -474,11 +477,11 @@ class _OrderPreviewState extends State<OrderPreview> {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 4),
               HeadingWidget(
                 title: "Select your payment Method",
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 4),
               Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -518,7 +521,7 @@ class _OrderPreviewState extends State<OrderPreview> {
                           "Debit/Credit Card"),
                     ],
                   )),
-              SizedBox(height: 16),
+              SizedBox(height: 4),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

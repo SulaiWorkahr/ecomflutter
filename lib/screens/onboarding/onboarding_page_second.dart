@@ -1,4 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:e_commerce/Location/location_allow.dart';
 import 'package:e_commerce/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 
@@ -86,11 +87,20 @@ class _OnboardingPagesecondState extends State<OnboardingPagesecond> {
                           right: screenWidth * 0.07,
                           bottom: screenHeight * 0.02),
                       child: Button1Widget(
+                        borderRadius: 10,
                         title: 'Next',
                         fontWeight: FontWeight.w600,
                         height: 54,
                         width: screenWidth,
                         color: AppColors.e_primary,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const LocationAllowPage()),
+                          );
+                        },
                       ),
                     )
                   ],

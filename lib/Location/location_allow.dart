@@ -1,4 +1,5 @@
 import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/screens/auth/registor.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/button1_widget.dart';
@@ -70,6 +71,14 @@ class _LocationAllowPageState extends State<LocationAllowPage> {
                 child: Column(
                   children: [
                     Button1Widget(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegistorPage()),
+                        );
+                      },
+                      borderRadius: 10,
                       title: 'Next',
                       fontWeight: FontWeight.w600,
                       height: 54,

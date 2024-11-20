@@ -1,6 +1,7 @@
 import 'package:e_commerce/constants/app_assets.dart';
 import 'package:e_commerce/constants/app_colors.dart';
 import 'package:e_commerce/model/home_page_model/home_category_model.dart';
+import 'package:e_commerce/screens/home/category_list.dart';
 import 'package:e_commerce/widgets/custom_text_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -224,15 +225,17 @@ class _HomepageState extends State<Homepage> {
 //Search
 
             TextField(
+              onTap: () {},
               cursorColor: AppColors.e_primary,
               decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.search_outlined,
-                    color: AppColors.grey1,
+                    color: AppColors.grey,
                   ),
                   hintText: 'Search Beverage for foods',
-                  hintStyle: TextStyle(color: AppColors.grey1),
+                  hintStyle: TextStyle(color: AppColors.grey),
                   border: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.e_grey),
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
@@ -311,7 +314,13 @@ class _HomepageState extends State<Homepage> {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CategoryList()),
+                          );
+                        },
                         child: Text('View More',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
@@ -695,6 +704,7 @@ class _HomepageState extends State<Homepage> {
                                   height: 35,
                                   width: double.infinity,
                                   child: SvgIconButtonWidget(
+                                    onTap: () {},
                                     title: 'Add to cart',
                                     width: screenWidth,
                                     leadingIcon: Image.asset(

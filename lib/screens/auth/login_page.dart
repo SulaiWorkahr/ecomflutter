@@ -1,4 +1,5 @@
 import 'package:e_commerce/constants/app_colors.dart';
+import 'package:e_commerce/screens/auth/registor.dart';
 import 'package:e_commerce/widgets/heading_widget.dart';
 import 'package:e_commerce/widgets/sub_heading_widget.dart';
 import 'package:e_commerce/widgets/svgiconButtonWidget.dart';
@@ -82,7 +83,9 @@ class _LoginPageState extends State<LoginPage> {
                             top: screenHeight * 0.02,
                             right: screenWidth * 0.05),
                         child: Button1Widget(
+                          onTap: () {},
                           title: 'Get OTP',
+                          borderRadius: 10,
                           height: 54,
                           width: screenWidth,
                           color: AppColors.e_primary,
@@ -126,11 +129,23 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.only(
                             left: screenWidth * 0.05,
                             right: screenWidth * 0.05),
-                        child: OutlineBtnWidget(
-                          height: 40,
-                          title: 'Log in with Google Account',
-                          titleColor: AppColors.e_black,
-                          borderColor: AppColors.e_grey3,
+                        child: InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.e_grey3),
+                                borderRadius: BorderRadius.circular(10)),
+                            width: screenWidth,
+                            height: 40,
+                            child: Center(
+                              child: Text(
+                                'Log in with Google Account',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onTap: () {},
                         ),
                       ),
                       SizedBox(
@@ -139,11 +154,23 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.only(
                             left: screenWidth * 0.05,
                             right: screenWidth * 0.05),
-                        child: OutlineBtnWidget(
-                          height: 40,
-                          title: 'Log in with Apple Account',
-                          titleColor: AppColors.e_black,
-                          borderColor: AppColors.e_grey3,
+                        child: InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.e_grey3),
+                                borderRadius: BorderRadius.circular(10)),
+                            width: screenWidth,
+                            height: 40,
+                            child: Center(
+                              child: Text(
+                                'Log in with Apple Account',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onTap: () {},
                         ),
                       ),
                       SizedBox(
@@ -161,12 +188,34 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            left: screenWidth * 0.05, top: screenHeight * 0.02),
-                        child: OutlineBtnWidget(
-                          height: 54,
-                          title: 'Sign up',
-                          titleColor: AppColors.e_primary,
-                          borderColor: AppColors.e_primary,
+                          left: screenWidth * 0.05,
+                          top: screenHeight * 0.02,
+                          right: screenWidth * 0.05,
+                        ),
+                        child: InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.e_primary),
+                                borderRadius: BorderRadius.circular(10)),
+                            width: screenWidth,
+                            height: 54,
+                            child: Center(
+                              child: Text(
+                                'Sign up',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: AppColors.e_primary,
+                                ),
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const RegistorPage()),
+                            );
+                          },
                         ),
                       ),
                     ]),

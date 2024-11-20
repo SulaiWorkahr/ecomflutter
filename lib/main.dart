@@ -1,31 +1,22 @@
 import 'dart:async';
 
-import 'package:e_commerce/screens/onboarding/onboarding_page_second.dart';
+import 'package:e_commerce/maincontainer/maincontainer.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:get/get.dart';
 
-import 'screens/address/add_address_page.dart';
-import 'screens/address/myaddress.dart';
-import 'screens/Filter/search_filter.dart';
-import 'Location/location_allow.dart';
-import 'screens/auth/login_page.dart';
-import 'screens/auth/otp_verification_page.dart';
-import 'screens/auth/registor.dart';
-import 'screens/cancelbooking/cancel_booking.dart';
-import 'screens/cart/addto_cartpage.dart';
-import 'screens/cart/shoppingcartpage.dart';
-import 'screens/cart/fruitslist/fruits_list.dart';
 import 'controllers/base_controller.dart';
 
 import 'package:flutter/material.dart';
 
 import 'constants/constants.dart';
-import 'screens/home/category_list.dart';
-import 'screens/home/homepage.dart';
-import 'maincontainer/maincontainer.dart';
-import 'screens/profile/profile_screen.dart';
-import 'screens/search/search_product.dart';
+import 'screens/auth/registor.dart';
+import 'screens/cart/shoppingcartpage.dart';
+import 'screens/onboarding/onboarding_page_first.dart';
+import 'screens/onboarding/onboarding_page_second.dart';
+import 'screens/orderPage/myorder.dart';
+import 'screens/orderPage/myorder_list.dart';
+import 'screens/orderPage/orderpreview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -116,7 +107,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         title: AppConstants.appTitle,
         debugShowCheckedModeBanner: false,
         theme: isDarkModeEnabled ? AppTheme.darkTheme : AppTheme.lightTheme,
-        home: ProfileScreen(),
+        home: OrderListScreen(),
       ),
     );
   }
